@@ -5,11 +5,12 @@ import random
 import sys
 
 
+# 1.5 sec pause is made after the text is printed
 def print_pause(message):
     print(message)
     time.sleep(1.5)
 
-
+# Descrption to the player of what is happening
 def intro():
     print_pause("You find yourself in a small village during Halloween "
                 "late in the evening.")
@@ -17,7 +18,8 @@ def intro():
     print_pause("Your goal is to safely reach home on the opposite side of "
                 "the village.")
 
-
+    
+# Validation of the player's input
 def valid_input(message, options):
     while True:
         response = input(message).lower()
@@ -27,7 +29,9 @@ def valid_input(message, options):
                 return response
         print_pause("Sorry, this isn't on the list")
 
-
+        
+# Different scenarios based on the previous choice in case 
+# the player meets trick-or-treaters
 def trick_or_treaters(item, play_again_list):
     if item == "candies":
         print_pause("Candies made the trick-or-treaters very happy.")
@@ -44,6 +48,8 @@ def trick_or_treaters(item, play_again_list):
         play_again(play_again_list)
 
 
+# Different scenarios based on the previous choice in case
+# the player meets zombies
 def zombies(item, play_again_list):
     if item == "guns":
         print_pause("With your guns you shot directly to zombies' heads.")
@@ -54,7 +60,9 @@ def zombies(item, play_again_list):
                     "you won't come back home.")
         play_again(play_again_list)
 
-
+        
+# Different scenarios based on the previous choice in case
+# the player meets vampires
 def vampires(item, play_again_list):
     if item == "holy water":
         print_pause("You splashed the vampires with holy water.")
@@ -66,7 +74,9 @@ def vampires(item, play_again_list):
         play_again(play_again_list)
 
 
+# The player uses the item in their bag against the enemy
 def action_1(enemy, item, items_trunk, play_again_list, enemies):
+    # Enemies are not repeating during one game   
     enemies.remove(enemy)
     if enemy == "trick-or-treaters":
         trick_or_treaters(item, play_again_list)
@@ -77,7 +87,8 @@ def action_1(enemy, item, items_trunk, play_again_list, enemies):
     print_pause("Your bag is empty again.")
     items_trunk.append(item)
 
-
+    
+# The player exchanges the item in the bag
 def action_2(enemy, item, items_trunk, play_again_list, enemies):
     print_pause("You are back at the old trunk.")
     print_pause(f"Which item do you want to exchange {item} for?\n")
@@ -89,7 +100,9 @@ def action_2(enemy, item, items_trunk, play_again_list, enemies):
     items_trunk.remove(item)
     action_1(enemy, item, items_trunk, play_again_list, enemies)
 
-
+    
+# The players finds a trunk and has to pick an item from
+# the ["candies", "guns", "holy water"] list
 def find_trunk(items_trunk):
     print_pause("Further on your way, you find an old trunk with "
                 "three items in it.")
@@ -104,7 +117,11 @@ def find_trunk(items_trunk):
     return item
 
 
+# The player is given a choice of two actions after meeting an enemy:
+# to use an item against the enemy
+# or to return to the trunk and pick another item.
 def meet_enemy(item, items_trunk, actions, play_again_list, enemies):
+    # Enemy is chosen in a random order    
     enemy = random.choice(enemies)
     print_pause(f"Suddenly, you've been approached by a bunch of {enemy}.")
     print_pause("What's your next step?\n")
@@ -117,6 +134,7 @@ def meet_enemy(item, items_trunk, actions, play_again_list, enemies):
         action_2(enemy, item, items_trunk, play_again_list, enemies)
 
 
+# After the game is over, the user can play the game again
 def play_again(play_again_list):
     print_pause("Would you like to play again?")
     response = valid_input("Please, enter yes or no.\n", play_again_list)
