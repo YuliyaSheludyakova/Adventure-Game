@@ -10,7 +10,7 @@ The game takes place on Halloween. The player has to defeat three enemies (trick
 * The game has conditions for winning and losing
 * When the game is over, it asks if the player wants to play again
 
-This project was developed through the Udacity Intro to Programming Nanodegree.
+The project was developed through the Udacity Intro to Programming Nanodegree.
 
 ## Used Programming skills
 * Foundations of Python
@@ -23,7 +23,7 @@ This project was developed through the Udacity Intro to Programming Nanodegree.
 * Following PEP 8 style guidelines
 
 ## Quickstart
-* Clone the project and cd into it in your terminal
+* Clone the project and `cd` into it in your terminal
 * Run `python adventure_game.py` or `python3 adventure_game.py` and follow the instruction on the screen
   - On **Windows** run `winpty python adventure_game.py` in order for the program to run correctly
 * _Note:_ The project runs on python 3
